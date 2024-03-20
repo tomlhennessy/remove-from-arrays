@@ -99,3 +99,75 @@ let rotate = function(array, num) {
         }
     }
 }
+```
+
+## hipsterfy
+Takes in a sentence string and returns the sentence where every word is missing its last vowel
+
+```javascript
+let removeLastVowel = function(word) {
+    let vowels = 'aeiou';
+
+    for (let i = word.length - 1; i >= 0; i++) {
+        let char = word[i];
+        if (vowels.includes(char)) {
+            return word.slice(0, i) + word.slice(i + 1);
+        }
+    }
+    return word;
+}
+
+let hipsterfy = function(sentence) {
+    // initialise array to store modified words
+    let newWords = [];
+    // split input sentence into array of words
+
+    // iterate through each word in array
+    for (let i = 0; i < words.length; i++) {
+        // store the current word
+        let word = words[i];
+        // call helper function to remove last vowel from word
+        newWords.push(removeLastVowel(word));
+    }
+    // join modified words into a single sentence
+    return newWords.join(' ');
+}
+```
+
+## Same Char Collapse
+Collapses identical characters in a string.
+
+```javascript
+function sameCharCollapse(str) {
+    // initialise a flag to control the loop
+    let reducible = true;
+
+    // continue looping until reducible becomes false
+    while (reducible) {
+        // split the string into an array of characters
+        let chars = str.split("");
+        // reset reducible flag to false
+        reducible = false
+
+        // iterate through the characters array
+        for (let i = 0; i < chars.length - 1; i++) {
+            // if two consecutive characters are identical
+            if (chars[i] == chars[i+1]) {
+                // remove both characters from the array
+                chars[i] = "";
+                chars[i + 1] = "";
+                // set reducible flage to true to indicate reduction occured
+                reducible = true;
+            }
+        }
+        // join modified characters array back into string
+        str = chars.join("");
+    }
+    // return final collapsed string
+    return str;
+}
+console.log(sameCharCollapse("zzzxaaxy"));  // "zy"
+// because zzzxaaxy -> zxaaxy -> zxxy -> zy
+console.log(sameCharCollapse("uqrssrqvtt")); // "uv"
+// because uqrssrqvtt -> uqrrqvtt -> uqqvtt -> uvtt -> uv
+```
